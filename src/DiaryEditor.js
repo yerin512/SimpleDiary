@@ -23,18 +23,28 @@ function DiaryEditor({ onCreate, setData, data }) {
   };
 
   const handleSubmit = (e) => {
-    e.preventdefault();
+    e.preventDefault();
     onCreate(state.author, state.content, state.emotion);
   };
 
   return (
     <Container>
-      <input name="author" placeholder="작성자" onChange={handelInputChange} />
-      <textarea name="contents" placeholder="내용을 입력해주세요." onChange={handelInputChange} />
+      <input
+        name="author"
+        defaultValue={state.author}
+        placeholder="작성자"
+        onChange={handelInputChange}
+      />
+      <textarea
+        name="content"
+        defaultValue={state.content}
+        placeholder="내용을 입력해주세요."
+        onChange={handelInputChange}
+      />
       <p>오늘의 감정점수:</p>
-      <select>
-        {test.map((num) => (
-          <option key={num.index} value={num.value}>
+      <select name="emotion" onChange={handelInputChange}>
+        {test.map((num, index) => (
+          <option key={index} defaultValue={state.emotion}>
             {num.name}
           </option>
         ))}
